@@ -29,53 +29,57 @@ class _Style(IntEnum):
 class __Styler:
     def __init__(self) -> None:
         self.__color_code: _Color = _Color.WHITE
-        self.__style: _Style = _Style.NONE
+        self.__styles: set[_Style] = set()
         return
 
     def __call__(self, text: str) -> str:
+        style: str = ""
+        for style_code in self.__styles:
+            style += f"{style_code};"
+
         styled_text: str = (
-            f"\033[{self.__style};{self.__color_code}m" f"{text}" f"\033[0m"
+            f"\033[{style}{self.__color_code}m{text}\033[0m"
         )
 
         # reset
         self.__color_code = _Color.BLACK
-        self.__style = _Style.NONE
+        self.__styles.clear()
 
         return styled_text
 
     @property
     def bold(self) -> Self:
-        self.__style = _Style.BOLD
+        self.__styles.add(_Style.BOLD)
         return self
 
     @property
     def dim(self) -> Self:
-        self.__style = _Style.DIM
+        self.__styles.add(_Style.DIM)
         return self
 
     @property
     def italic(self) -> Self:
-        self.__style = _Style.ITALIC
+        self.__styles.add(_Style.ITALIC)
         return self
 
     @property
     def underline(self) -> Self:
-        self.__style = _Style.UNDERLINE
+        self.__styles.add(_Style.UNDERLINE)
         return self
 
     @property
     def blink(self) -> Self:
-        self.__style = _Style.BLINK
+        self.__styles.add(_Style.BLINK)
         return self
 
     @property
     def reverse(self) -> Self:
-        self.__style = _Style.REVERSE
+        self.__styles.add(_Style.REVERSE)
         return self
 
     @property
     def strikethrough(self) -> Self:
-        self.__style = _Style.STRIKETHROUGH
+        self.__styles.add(_Style.STRIKETHROUGH)
         return self
 
     @property
