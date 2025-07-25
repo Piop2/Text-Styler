@@ -1,0 +1,10 @@
+[project]
+name = "textstyler"
+version = "1.0.0"
+authors = [
+    {name = "Pio", email = "pioooop2@gmail.com"},
+]
+description = ""
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
