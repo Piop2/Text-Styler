@@ -1,5 +1,7 @@
 # Text Styler
 
+> This project is inspired by [chalk](https://github.com/chalk/chalk), which is written in JS.
+
 ## install
 ```
 pip install git+https://github.com/Piop2/Text-Styler.git@main
